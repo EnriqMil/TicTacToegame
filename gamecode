@@ -1,0 +1,107 @@
+import random
+
+list=[]
+list_man=[0,0,0,0,0,0,0,0,0]
+list_machine=[0,0,0,0,0,0,0,0,0]
+
+def choosen():
+    x = input('Do you want to be  "X" or "O":')
+    y = x.lower()
+    if y=='x':
+        print('you choose "X"')
+    else:
+        print('you choose "O"')
+
+def start():
+    global man_position
+    man_position=int(input('you start! Introduce your counter in the position you want, \n start form 1 to 9 :  '))
+    print('You choose position {}'.format(man_position))
+    list_man[man_position-1]=(1)
+    list.append(man_position)
+    print(list_man)
+
+def machine_turn():
+    global value
+    value=random.randint(1,9)
+    while value not in list:
+        print('Machine choose {} '.format(value))
+        list.append(value)
+        list_machine[value-1]=(1)
+        print(list)
+        break
+
+def man_turn():
+    man_position=int(input('Introduce next position: '))
+    if man_position in list:
+        print('Please try again')
+        man_turn()
+    else:
+        print('You choose {} '.format(man_position))
+        list.append(man_position)
+        list_man[man_position-1]=(1)
+        print(list)
+
+def winner_man():
+    if list_man[0:3].count(1)==3 or list_man[3:6].count(1)==3 or  list_man[6:9].count(1)==3:
+        print('The winner is the man')
+        stop+=1
+        if stop ==1:
+            stop_game()
+    elif list_man[0:7:3].count(1)==3 or list_man[1:8:3].count(1)==3 or list_man[2:9:3].count(1)==3:
+        print('The winner is the man')
+    elif list_man[0:9:4].count(1)==3 or list_man[2:7:2].count(1)==3:
+        print('The winner is the man')
+
+
+def winner_machine():
+    if list_man[0:3].count(1) == 3 or list_man[3:6].count(1) == 3 or list_man[6:9].count(1) == 3:
+        print('The winner is the machine')
+    elif list_man[0:7:3].count(1)== 3 or list_man[1:8:3].count(1) == 3 or list_man[2:9:3].count(1) == 3:
+        print('The winner is the machine')
+    elif list_man[0:9:4].count(1) == 3 or list_man[2:7:2].count(1) == 3:
+        print('The winner is the machine')
+
+zero_space=  ('__________________________________________')
+first_row=   ('|            ||            ||            |') #12
+first_space= ('|____________||____________||____________|')
+second_row=  ('|            ||            ||            |')
+second_space=('|____________||____________||____________|')
+third_row=   ('|            ||            ||            |')
+last_line=   ('|____________||____________||____________|')
+def her():
+    first_row= ['    1   ','||    2     ','||     3  '] #8##10#8
+    first_space=['________','||__________','||________']
+    second_row=['     4   ','||   5      ','||    6   ']
+    second_space=['________','||__________','||________']
+    third_row=['     7   ','||   8       ','||   9     ']
+
+
+print(zero_space)
+print(first_row)
+print(first_space)
+print(second_row)
+print(second_space)
+print(third_row)
+print(last_line)
+
+choosen()
+start()
+machine_turn()
+man_turn()
+machine_turn()
+man_turn()
+winner_man()
+machine_turn()
+winner_machine()
+man_turn()
+winner_man()
+machine_turn()
+winner_machine()
+man_turn()
+winner_man()
+machine_turn()
+winner_machine()
+man_turn()
+winner_man()
+machine_turn()
+winner_machine()
